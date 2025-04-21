@@ -95,9 +95,20 @@ const VisaApplication: React.FC = () => {
       setIsLoading(true);
       setFormSubmitted(true);
 
-      // Save traveller data to context
+      // Save traveller data to context - Ensure all required fields are present
       setTraveller({
-        ...data,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        email: data.email,
+        phone: data.phone,
+        country_code: data.country_code,
+        building: data.building,
+        floor: data.floor,
+        apartment: data.apartment,
+        street: data.street,
+        city: data.city,
+        state: data.state,
+        country: data.country,
         locale: 'en'
       });
 
