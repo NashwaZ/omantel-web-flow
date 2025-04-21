@@ -29,7 +29,6 @@ const Workflow = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
       <header className="border-b border-gray-200 bg-white">
         <div className="px-4 h-16 flex items-center">
           <img 
@@ -40,9 +39,7 @@ const Workflow = () => {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        {/* Progress indicator */}
         <div className="max-w-3xl mx-auto mb-8">
           <div className="flex items-center justify-between">
             {steps.map((step, index) => (
@@ -87,12 +84,10 @@ const Workflow = () => {
           </div>
         </div>
 
-        {/* Step content */}
         <div className="mb-8">
           {steps[currentStep - 1].component}
         </div>
 
-        {/* Navigation buttons */}
         <div className="max-w-3xl mx-auto flex justify-between">
           <Button
             onClick={goToPreviousStep}
