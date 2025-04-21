@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ApplicationProvider } from "./context/ApplicationContext";
 
 import VisaSearch from "./pages/VisaSearch";
+import VisaResults from "./pages/VisaResults";
+import VisaApplication from "./pages/VisaApplication";
 import ApplicationComplete from "./pages/ApplicationComplete";
 
 const queryClient = new QueryClient();
@@ -20,6 +22,8 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<VisaSearch />} />
+            <Route path="/visa-results" element={<VisaResults />} />
+            <Route path="/visa-application" element={<VisaApplication />} />
             <Route path="/application-complete" element={<ApplicationComplete />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

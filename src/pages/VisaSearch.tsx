@@ -10,6 +10,25 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { useNavigate } from 'react-router-dom';
 import { useApplication } from '@/context/ApplicationContext';
 
+const countries = {
+  destinations: [
+    { code: "AE", name: "United Arab Emirates" },
+    { code: "SA", name: "Saudi Arabia" },
+    { code: "QA", name: "Qatar" },
+    { code: "OM", name: "Oman" },
+    { code: "KW", name: "Kuwait" },
+    { code: "BH", name: "Bahrain" }
+  ],
+  citizenships: [
+    { code: "IN", name: "India" },
+    { code: "PK", name: "Pakistan" },
+    { code: "BD", name: "Bangladesh" },
+    { code: "LK", name: "Sri Lanka" },
+    { code: "PH", name: "Philippines" },
+    { code: "NP", name: "Nepal" }
+  ]
+};
+
 const VisaSearch: React.FC = () => {
   const [destination, setDestination] = useState('');
   const [citizenship, setCitizenship] = useState('');
@@ -53,9 +72,11 @@ const VisaSearch: React.FC = () => {
                 <SelectValue placeholder="Select Destination" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="UAE">UAE</SelectItem>
-                <SelectItem value="Saudi Arabia">Saudi Arabia</SelectItem>
-                <SelectItem value="Oman">Oman</SelectItem>
+                {countries.destinations.map((country) => (
+                  <SelectItem key={country.code} value={country.code}>
+                    {country.name}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
 
@@ -67,9 +88,11 @@ const VisaSearch: React.FC = () => {
                 <SelectValue placeholder="Select Citizenship" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Indian">Indian</SelectItem>
-                <SelectItem value="Pakistani">Pakistani</SelectItem>
-                <SelectItem value="Bangladeshi">Bangladeshi</SelectItem>
+                {countries.citizenships.map((country) => (
+                  <SelectItem key={country.code} value={country.code}>
+                    {country.name}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
 
@@ -86,12 +109,13 @@ const VisaSearch: React.FC = () => {
                   {arrivalDate ? format(arrivalDate, "PPP") : <span>Pick a date</span>}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
+              <PopoverContent className="w-auto p-0" align="end">
                 <Calendar
                   mode="single"
                   selected={arrivalDate}
                   onSelect={setArrivalDate}
                   initialFocus
+                  disabled={(date) => date < new Date()}
                 />
               </PopoverContent>
             </Popover>
