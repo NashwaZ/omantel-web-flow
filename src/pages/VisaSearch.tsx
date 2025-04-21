@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -34,10 +33,8 @@ const VisaSearch: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-omantel-orange via-white to-omantel-blue">
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-sm" />
-      
-      <div className="absolute top-0 left-0 w-full p-4">
+    <div className="min-h-screen bg-white relative overflow-hidden">      
+      <div className="absolute top-0 left-0 w-full p-6">
         <img 
           src="/lovable-uploads/17ae61e2-701d-40b7-9fef-079b70a0a6b3.png" 
           alt="Omantel Logo" 
@@ -46,26 +43,23 @@ const VisaSearch: React.FC = () => {
       </div>
 
       <div className="flex items-center justify-center min-h-screen px-4">
-        <div className="w-full max-w-md z-10">
-          <div className="bg-white/90 backdrop-blur-md shadow-2xl rounded-3xl p-8 space-y-6 border border-white/50 transform hover:scale-[1.01] transition-all duration-300">
+        <div className="w-full max-w-md">
+          <div className="bg-white shadow-lg rounded-xl p-8 space-y-8 border border-omantel-blue/10 transition-all duration-300 hover:shadow-xl">
             <div className="text-center space-y-3">
-              <div className="relative inline-block group">
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-omantel-orange to-omantel-blue bg-clip-text text-transparent">
-                  eVisa Search
-                </h2>
-                <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-omantel-orange to-omantel-blue rounded-full transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-              </div>
-              <p className="text-omantel-darkBlue/70 text-sm">Find and apply for your visa online</p>
+              <h2 className="text-3xl font-bold text-omantel-darkBlue">
+                eVisa Search
+              </h2>
+              <p className="text-omantel-gray/70 text-sm">Find and apply for your visa online</p>
             </div>
 
-            <div className="space-y-5">
+            <div className="space-y-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-omantel-darkBlue">Destination Country</label>
                 <Select 
                   value={destination} 
                   onValueChange={setDestination}
                 >
-                  <SelectTrigger className="w-full h-12 bg-white/80 border-omantel-softOrange hover:border-omantel-orange focus:border-omantel-blue transition-all duration-300 shadow-sm">
+                  <SelectTrigger className="w-full h-12 bg-white border-omantel-blue/20 hover:border-omantel-orange focus:border-omantel-blue transition-all duration-300">
                     <SelectValue placeholder="Select Destination">
                       <div className="flex items-center gap-2">
                         <Globe2 className="w-4 h-4 text-omantel-orange" />
@@ -73,12 +67,12 @@ const VisaSearch: React.FC = () => {
                       </div>
                     </SelectValue>
                   </SelectTrigger>
-                  <SelectContent className="bg-white/95 backdrop-blur-md border-omantel-softOrange max-h-[300px]">
+                  <SelectContent className="bg-white border-omantel-blue/10 max-h-[300px]">
                     {countries.destinations.map((country) => (
                       <SelectItem 
                         key={country.code} 
                         value={country.code}
-                        className="hover:bg-gradient-to-r hover:from-omantel-orange/10 hover:to-omantel-blue/10 focus:bg-gradient-to-r focus:from-omantel-orange/10 focus:to-omantel-blue/10 cursor-pointer transition-colors duration-300"
+                        className="hover:bg-omantel-blue/5 focus:bg-omantel-blue/5 cursor-pointer transition-colors duration-300"
                       >
                         {country.name}
                       </SelectItem>
@@ -93,7 +87,7 @@ const VisaSearch: React.FC = () => {
                   value={citizenship} 
                   onValueChange={setCitizenship}
                 >
-                  <SelectTrigger className="w-full h-12 bg-white/80 border-omantel-softOrange hover:border-omantel-orange focus:border-omantel-blue transition-all duration-300 shadow-sm">
+                  <SelectTrigger className="w-full h-12 bg-white border-omantel-blue/20 hover:border-omantel-orange focus:border-omantel-blue transition-all duration-300">
                     <SelectValue placeholder="Select Citizenship">
                       <div className="flex items-center gap-2">
                         <Plane className="w-4 h-4 text-omantel-blue" />
@@ -101,12 +95,12 @@ const VisaSearch: React.FC = () => {
                       </div>
                     </SelectValue>
                   </SelectTrigger>
-                  <SelectContent className="bg-white/95 backdrop-blur-md border-omantel-softOrange max-h-[300px]">
+                  <SelectContent className="bg-white border-omantel-blue/10 max-h-[300px]">
                     {countries.citizenships.map((country) => (
                       <SelectItem 
                         key={country.code} 
                         value={country.code}
-                        className="hover:bg-gradient-to-r hover:from-omantel-orange/10 hover:to-omantel-blue/10 focus:bg-gradient-to-r focus:from-omantel-orange/10 focus:to-omantel-blue/10 cursor-pointer transition-colors duration-300"
+                        className="hover:bg-omantel-blue/5 focus:bg-omantel-blue/5 cursor-pointer transition-colors duration-300"
                       >
                         {country.name}
                       </SelectItem>
@@ -122,7 +116,7 @@ const VisaSearch: React.FC = () => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-full h-12 justify-start text-left font-normal bg-white/80 border-omantel-softOrange hover:border-omantel-orange focus:border-omantel-blue transition-all duration-300 shadow-sm",
+                        "w-full h-12 justify-start text-left font-normal bg-white border-omantel-blue/20 hover:border-omantel-orange focus:border-omantel-blue transition-all duration-300",
                         !arrivalDate && "text-muted-foreground"
                       )}
                     >
@@ -137,7 +131,7 @@ const VisaSearch: React.FC = () => {
                       onSelect={setArrivalDate}
                       initialFocus
                       disabled={(date) => date < new Date()}
-                      className="rounded-md border border-omantel-softOrange"
+                      className="rounded-md border border-omantel-blue/10"
                     />
                   </PopoverContent>
                 </Popover>
@@ -146,12 +140,9 @@ const VisaSearch: React.FC = () => {
               <Button 
                 onClick={handleSearch} 
                 className={cn(
-                  "w-full h-12 relative overflow-hidden transition-all duration-500",
-                  "bg-gradient-to-r from-omantel-orange to-omantel-blue hover:scale-[1.02]",
-                  "text-white shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed",
-                  "before:absolute before:inset-0 before:bg-gradient-to-r before:from-omantel-blue before:to-omantel-orange",
-                  "before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500",
-                  "disabled:before:opacity-0"
+                  "w-full h-12 relative bg-omantel-blue text-white",
+                  "hover:bg-omantel-blue/90 transition-all duration-300",
+                  "disabled:opacity-50 disabled:cursor-not-allowed"
                 )}
                 disabled={!destination || !citizenship || !arrivalDate || isLoading}
               >
@@ -161,7 +152,7 @@ const VisaSearch: React.FC = () => {
                     Processing...
                   </>
                 ) : (
-                  <span className="relative z-10">Search Visas</span>
+                  <span>Search Visas</span>
                 )}
               </Button>
             </div>
