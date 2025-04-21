@@ -72,6 +72,8 @@ export default {
                 },
                 backgroundImage: {
                     'orange-gradient': 'linear-gradient(135deg, #FD7B07 0%, #FEC6A1 100%)',
+                    'blue-gradient': 'linear-gradient(135deg, #3131F5 0%, #EEF4FF 100%)',
+                    'mixed-gradient': 'linear-gradient(135deg, #FD7B07 0%, #3131F5 100%)',
                 }
             },
             borderRadius: {
