@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ApplicationProvider } from "./context/ApplicationContext";
 
-import Workflow from "./pages/Workflow";
+import VisaSearch from "./pages/VisaSearch";
 import ApplicationComplete from "./pages/ApplicationComplete";
 
 const queryClient = new QueryClient();
@@ -19,7 +19,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Workflow />} />
+            <Route path="/" element={<VisaSearch />} />
             <Route path="/application-complete" element={<ApplicationComplete />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
