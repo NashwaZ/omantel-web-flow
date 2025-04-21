@@ -1,9 +1,9 @@
-
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 const Index = () => {
   return (
@@ -12,46 +12,68 @@ const Index = () => {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="omantel-gradient-bg py-20">
+        <section className="bg-white py-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-omantel-darkBlue mb-6">
-                  Omantel eVisa Services
+                <div className="flex items-center gap-3 mb-6">
+                  <LoadingSpinner variant="mixed" size="sm" />
+                  <span className="text-omantel-blue font-medium">Simplified Visa Process</span>
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                  <span className="text-omantel-orange">eVisa</span>{' '}
+                  <span className="text-omantel-blue">Services</span>
                 </h1>
-                <p className="text-lg text-omantel-gray mb-8">
-                  Apply for eVisas online with a simple and streamlined process. Get travel-ready with Omantel's eVisa application service.
+                <p className="text-lg text-omantel-gray mb-8 leading-relaxed">
+                  Apply for eVisas online with a simple and streamlined process. 
+                  Get travel-ready with Omantel's eVisa application service.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link to="/visa-search">
-                    <Button className="omantel-button">
+                    <Button 
+                      className="bg-omantel-blue text-white hover:bg-omantel-blue/90 
+                        transition-all duration-300 transform hover:scale-105"
+                    >
                       Apply for eVisa
                     </Button>
                   </Link>
                   <Link to="/workflow">
-                    <Button variant="outline" className="border-omantel-blue text-omantel-blue hover:bg-omantel-blue hover:text-white">
+                    <Button 
+                      variant="outline" 
+                      className="border-omantel-orange text-omantel-orange 
+                        hover:bg-omantel-orange hover:text-white transition-all duration-300"
+                    >
                       How It Works
                     </Button>
                   </Link>
                 </div>
               </div>
               
-              <div className="hidden md:block">
-                <img 
-                  src="https://via.placeholder.com/600x400?text=eVisa+Service" 
-                  alt="eVisa Service" 
-                  className="rounded-lg shadow-lg"
-                />
+              <div className="hidden md:flex justify-center items-center">
+                <div className="relative">
+                  <img 
+                    src="https://via.placeholder.com/600x400?text=eVisa+Service" 
+                    alt="eVisa Service" 
+                    className="rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+                  />
+                  <div className="absolute -top-4 -right-4">
+                    <LoadingSpinner variant="orange" size="lg" />
+                  </div>
+                  <div className="absolute -bottom-4 -left-4">
+                    <LoadingSpinner variant="blue" size="lg" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
         
         {/* Features Section */}
-        <section className="py-16">
+        <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-omantel-darkBlue mb-12">
-              Why Choose Our eVisa Service
+            <h2 className="text-3xl font-bold text-center mb-12">
+              <span className="text-omantel-blue">Why Choose</span>{' '}
+              <span className="text-omantel-orange">Our eVisa Service</span>
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -95,10 +117,11 @@ const Index = () => {
         </section>
         
         {/* How It Works Section */}
-        <section className="bg-omantel-lightBlue py-16">
+        <section className="bg-white py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-omantel-darkBlue mb-12">
-              How It Works
+            <h2 className="text-3xl font-bold text-center mb-12">
+              <span className="text-omantel-blue">How It</span>{' '}
+              <span className="text-omantel-orange">Works</span>
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -129,7 +152,10 @@ const Index = () => {
             
             <div className="text-center mt-12">
               <Link to="/visa-search">
-                <Button className="omantel-button text-lg py-6 px-8">
+                <Button 
+                  className="bg-omantel-blue text-white hover:bg-omantel-blue/90 
+                    text-lg py-6 px-8 transform hover:scale-105 transition-all duration-300"
+                >
                   Start Your Application
                 </Button>
               </Link>
