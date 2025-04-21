@@ -1,8 +1,6 @@
 
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import CodeBlock from '@/components/CodeBlock';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import CodeBlock from '@/components/CodeBlock';
 
 const Workflow = () => {
   const authRequestCode = `POST /api/v1/auth/token HTTP/1.1
@@ -42,115 +40,77 @@ Content-Type: application/json
 }`;
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navigation />
-      
-      <main className="flex-grow">
-        {/* Header */}
-        <section className="bg-omantel-blue py-12">
-          <div className="container mx-auto px-4">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              API Workflow
-            </h1>
-            <p className="text-white text-opacity-90 max-w-3xl">
-              This guide walks you through the typical workflow for interacting with Omantel APIs, from authentication to making requests and handling responses.
-            </p>
-          </div>
-        </section>
-        
-        {/* Workflow Steps */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl font-bold text-omantel-darkBlue mb-8">
-                API Integration Flow
-              </h2>
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="border-b border-gray-200 bg-white">
+        <div className="px-4 h-16 flex items-center">
+          <img 
+            src="/lovable-uploads/17ae61e2-701d-40b7-9fef-079b70a0a6b3.png" 
+            alt="Omantel Logo" 
+            className="h-8"
+          />
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold text-omantel-blue mb-8">
+            API Workflow
+          </h1>
+          
+          <div className="space-y-12">
+            {/* Step 1: Authentication */}
+            <section className="bg-white rounded-lg border p-6">
+              <h2 className="text-2xl font-semibold text-omantel-blue mb-4">1. Authentication</h2>
+              <p className="text-gray-600 mb-6">
+                To access the Omantel API endpoints, first authenticate your application using OAuth 2.0.
+              </p>
               
-              <div className="space-y-16">
-                {/* Step 1 */}
-                <div className="relative pl-8 border-l-2 border-omantel-blue pb-8">
-                  <div className="absolute -left-3 top-0 w-6 h-6 rounded-full bg-omantel-blue"></div>
-                  <h3 className="text-xl font-semibold text-omantel-blue mb-4">1. Authentication</h3>
-                  <p className="text-omantel-gray mb-6">
-                    Before making any API calls, you need to authenticate your application. Omantel uses OAuth 2.0 for secure API authentication.
-                  </p>
-                  
-                  <Tabs defaultValue="request">
-                    <TabsList className="mb-2">
-                      <TabsTrigger value="request">Request</TabsTrigger>
-                      <TabsTrigger value="response">Response</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="request">
-                      <CodeBlock 
-                        code={authRequestCode} 
-                        title="Authentication Request" 
-                      />
-                    </TabsContent>
-                    <TabsContent value="response">
-                      <CodeBlock 
-                        code={authResponseCode} 
-                        title="Authentication Response" 
-                      />
-                    </TabsContent>
-                  </Tabs>
-                  
-                  <div className="bg-omantel-lightBlue rounded-lg p-4 mt-4">
-                    <p className="text-sm">
-                      <strong>Note:</strong> Store the access token securely. It will expire after the time specified in the expires_in field.
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Step 2 */}
-                <div className="relative pl-8 border-l-2 border-omantel-blue pb-8">
-                  <div className="absolute -left-3 top-0 w-6 h-6 rounded-full bg-omantel-blue"></div>
-                  <h3 className="text-xl font-semibold text-omantel-blue mb-4">2. Making API Requests</h3>
-                  <p className="text-omantel-gray mb-6">
-                    Once authenticated, you can make requests to the various API endpoints. Include your access token in the Authorization header.
-                  </p>
-                  
-                  <Tabs defaultValue="request">
-                    <TabsList className="mb-2">
-                      <TabsTrigger value="request">Request</TabsTrigger>
-                      <TabsTrigger value="response">Response</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="request">
-                      <CodeBlock 
-                        code={apiRequestCode} 
-                        title="API Request" 
-                      />
-                    </TabsContent>
-                    <TabsContent value="response">
-                      <CodeBlock 
-                        code={apiResponseCode} 
-                        title="API Response" 
-                      />
-                    </TabsContent>
-                  </Tabs>
-                </div>
-                
-                {/* Step 3 */}
-                <div className="relative pl-8 border-l-2 border-omantel-blue pb-8">
-                  <div className="absolute -left-3 top-0 w-6 h-6 rounded-full bg-omantel-blue"></div>
-                  <h3 className="text-xl font-semibold text-omantel-blue mb-4">3. Handling Responses</h3>
-                  <p className="text-omantel-gray mb-6">
-                    All API responses follow a consistent format. Success responses have a 2xx status code, while errors use appropriate 4xx or 5xx codes with descriptive messages.
-                  </p>
-                  
-                  <h4 className="font-medium mb-2">Success Response Structure</h4>
-                  <CodeBlock 
-                    code={`{
-  "status": "success",
-  "data": {
-    // Response data varies by endpoint
-  }
-}`} 
-                    title="Success Response" 
-                  />
-                  
-                  <h4 className="font-medium mt-6 mb-2">Error Response Structure</h4>
-                  <CodeBlock 
-                    code={`{
+              <Tabs defaultValue="request">
+                <TabsList>
+                  <TabsTrigger value="request">Request</TabsTrigger>
+                  <TabsTrigger value="response">Response</TabsTrigger>
+                </TabsList>
+                <TabsContent value="request">
+                  <CodeBlock code={authRequestCode} title="Authentication Request" />
+                </TabsContent>
+                <TabsContent value="response">
+                  <CodeBlock code={authResponseCode} title="Authentication Response" />
+                </TabsContent>
+              </Tabs>
+            </section>
+
+            {/* Step 2: Making API Requests */}
+            <section className="bg-white rounded-lg border p-6">
+              <h2 className="text-2xl font-semibold text-omantel-blue mb-4">2. Making API Requests</h2>
+              <p className="text-gray-600 mb-6">
+                Once authenticated, include the access token in the Authorization header for all API requests.
+              </p>
+              
+              <Tabs defaultValue="request">
+                <TabsList>
+                  <TabsTrigger value="request">Request</TabsTrigger>
+                  <TabsTrigger value="response">Response</TabsTrigger>
+                </TabsList>
+                <TabsContent value="request">
+                  <CodeBlock code={apiRequestCode} title="API Request" />
+                </TabsContent>
+                <TabsContent value="response">
+                  <CodeBlock code={apiResponseCode} title="API Response" />
+                </TabsContent>
+              </Tabs>
+            </section>
+
+            {/* Step 3: Error Handling */}
+            <section className="bg-white rounded-lg border p-6">
+              <h2 className="text-2xl font-semibold text-omantel-blue mb-4">3. Error Handling</h2>
+              <p className="text-gray-600 mb-6">
+                All API responses use standard HTTP status codes. Errors include detailed messages for debugging.
+              </p>
+              
+              <CodeBlock 
+                code={`{
   "status": "error",
   "error": {
     "code": "INVALID_PARAMETER",
@@ -161,57 +121,29 @@ Content-Type: application/json
     }
   }
 }`} 
-                    title="Error Response" 
-                  />
-                </div>
-                
-                {/* Step 4 */}
-                <div className="relative pl-8">
-                  <div className="absolute -left-3 top-0 w-6 h-6 rounded-full bg-omantel-blue"></div>
-                  <h3 className="text-xl font-semibold text-omantel-blue mb-4">4. Rate Limiting</h3>
-                  <p className="text-omantel-gray mb-6">
-                    Omantel APIs implement rate limiting to ensure fair usage. Rate limit information is included in the API responses.
-                  </p>
-                  
-                  <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-                    <h4 className="font-medium mb-4">Rate Limit Headers</h4>
-                    <table className="w-full text-left">
-                      <thead>
-                        <tr className="border-b">
-                          <th className="pb-2">Header</th>
-                          <th className="pb-2">Description</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr className="border-b">
-                          <td className="py-3 pr-4 font-mono text-sm">X-RateLimit-Limit</td>
-                          <td>Maximum number of requests allowed in the current time window</td>
-                        </tr>
-                        <tr className="border-b">
-                          <td className="py-3 pr-4 font-mono text-sm">X-RateLimit-Remaining</td>
-                          <td>Number of requests remaining in the current time window</td>
-                        </tr>
-                        <tr>
-                          <td className="py-3 pr-4 font-mono text-sm">X-RateLimit-Reset</td>
-                          <td>Timestamp when the rate limit window resets (in Unix time)</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  
-                  <div className="bg-omantel-lightBlue rounded-lg p-4">
-                    <p className="text-sm">
-                      <strong>Best Practice:</strong> Implement exponential backoff retry logic when dealing with rate limit errors.
-                    </p>
-                  </div>
-                </div>
+                title="Error Response" 
+              />
+            </section>
+
+            {/* Step 4: Rate Limiting */}
+            <section className="bg-white rounded-lg border p-6">
+              <h2 className="text-2xl font-semibold text-omantel-blue mb-4">4. Rate Limiting</h2>
+              <p className="text-gray-600 mb-6">
+                API requests are rate-limited to ensure fair usage. Monitor the rate limit headers in responses.
+              </p>
+              
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="font-medium mb-2">Rate Limit Headers</h3>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  <li><code>X-RateLimit-Limit</code>: Maximum requests per window</li>
+                  <li><code>X-RateLimit-Remaining</code>: Remaining requests in current window</li>
+                  <li><code>X-RateLimit-Reset</code>: Time when the rate limit resets</li>
+                </ul>
               </div>
-            </div>
+            </section>
           </div>
-        </section>
+        </div>
       </main>
-      
-      <Footer />
     </div>
   );
 };
