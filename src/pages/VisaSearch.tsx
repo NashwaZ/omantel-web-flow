@@ -34,22 +34,22 @@ const VisaSearch: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-omantel-orange via-white to-omantel-blue relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-omantel-orange via-white to-omantel-blue">
       <div className="absolute inset-0 bg-white/30 backdrop-blur-sm" />
       
-      <header className="absolute top-0 left-0 w-full p-4 z-10">
+      <div className="absolute top-0 left-0 w-full p-4">
         <img 
           src="/lovable-uploads/17ae61e2-701d-40b7-9fef-079b70a0a6b3.png" 
           alt="Omantel Logo" 
           className="h-8" 
         />
-      </header>
+      </div>
 
       <div className="flex items-center justify-center min-h-screen px-4">
         <div className="w-full max-w-md z-10">
-          <div className="bg-white/90 backdrop-blur-md shadow-2xl rounded-3xl p-8 space-y-6 border border-white/50">
+          <div className="bg-white/90 backdrop-blur-md shadow-2xl rounded-3xl p-8 space-y-6 border border-white/50 transform hover:scale-[1.01] transition-all duration-300">
             <div className="text-center space-y-3">
-              <div className="relative inline-block">
+              <div className="relative inline-block group">
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-omantel-orange to-omantel-blue bg-clip-text text-transparent">
                   eVisa Search
                 </h2>
@@ -73,7 +73,7 @@ const VisaSearch: React.FC = () => {
                       </div>
                     </SelectValue>
                   </SelectTrigger>
-                  <SelectContent className="bg-white/95 backdrop-blur-md border-omantel-softOrange">
+                  <SelectContent className="bg-white/95 backdrop-blur-md border-omantel-softOrange max-h-[300px]">
                     {countries.destinations.map((country) => (
                       <SelectItem 
                         key={country.code} 
@@ -101,7 +101,7 @@ const VisaSearch: React.FC = () => {
                       </div>
                     </SelectValue>
                   </SelectTrigger>
-                  <SelectContent className="bg-white/95 backdrop-blur-md border-omantel-softOrange">
+                  <SelectContent className="bg-white/95 backdrop-blur-md border-omantel-softOrange max-h-[300px]">
                     {countries.citizenships.map((country) => (
                       <SelectItem 
                         key={country.code} 
