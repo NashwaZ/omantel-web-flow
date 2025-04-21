@@ -2,13 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useApplication } from '@/context/ApplicationContext';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { ArrowLeft } from 'lucide-react';
 
 // Mock data for visa programs
 const mockVisaPrograms = [
@@ -92,108 +91,101 @@ const VisaResults: React.FC = () => {
 
   if (localLoading) {
     return (
-      <div className="flex flex-col min-h-screen">
-        <Navigation />
-        
-        <main className="flex-grow omantel-gradient-bg py-12 flex items-center justify-center">
-          <div className="text-center">
-            <LoadingSpinner size="lg" className="mb-4" />
-            <h2 className="text-xl font-semibold text-omantel-darkBlue">Loading Visa Programs...</h2>
-            <p className="text-omantel-gray mt-2">Please wait while we find available visas for your trip.</p>
-          </div>
-        </main>
-        
-        <Footer />
+      <div className="min-h-screen bg-white flex items-center justify-center p-6">
+        <div className="text-center">
+          <LoadingSpinner size="lg" className="mb-4" />
+          <h2 className="text-xl font-semibold text-omantel-darkBlue">Loading Visa Programs...</h2>
+          <p className="text-omantel-gray mt-2">Please wait while we find available visas for your trip.</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navigation />
+    <div className="min-h-screen bg-white p-6 relative">
+      <div className="absolute top-0 left-0 w-full p-6">
+        <img 
+          src="/lovable-uploads/17ae61e2-701d-40b7-9fef-079b70a0a6b3.png" 
+          alt="Omantel Logo" 
+          className="h-8" 
+        />
+      </div>
       
-      <main className="flex-grow omantel-gradient-bg py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <Card className="border-0 shadow-lg">
-              <CardHeader className="bg-omantel-blue text-white rounded-t-lg">
-                <CardTitle className="text-2xl font-semibold">Available Visa Programs</CardTitle>
-                <CardDescription className="text-white/90">
-                  {visaSearch && (
-                    <>
-                      For travel from <span className="font-semibold">{visaSearch.citizenship.toUpperCase()}</span> to <span className="font-semibold">{visaSearch.destination.toUpperCase()}</span> on <span className="font-semibold">{visaSearch.arrivalDate}</span>
-                    </>
-                  )}
-                </CardDescription>
-              </CardHeader>
-              
-              <CardContent className="p-6">
-                <div className="space-y-6">
-                  {mockVisaPrograms.length > 0 ? (
-                    mockVisaPrograms.map((visa) => (
-                      <Card key={visa.id} className="overflow-hidden border border-gray-200 hover:border-omantel-orange transition-colors">
-                        <CardHeader className="bg-gray-50 py-4">
-                          <div className="flex flex-wrap justify-between items-center">
-                            <CardTitle className="text-lg text-omantel-darkBlue">{visa.name}</CardTitle>
-                            <Badge className="bg-omantel-orange">{visa.duration}</Badge>
-                          </div>
-                          <CardDescription>{visa.description}</CardDescription>
-                        </CardHeader>
-                        
-                        <CardContent className="py-4">
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div>
-                              <p className="text-sm text-gray-500">Processing Time</p>
-                              <p className="font-medium">{visa.processing_time}</p>
-                            </div>
-                            <div>
-                              <p className="text-sm text-gray-500">Price</p>
-                              <p className="font-medium text-omantel-blue">
-                                {visa.price} {visa.currency}
-                              </p>
-                            </div>
-                            <div className="md:text-right">
-                              <Button 
-                                className="bg-omantel-orange hover:bg-omantel-orange/90 text-white w-full md:w-auto"
-                                onClick={() => handleApply(visa)}
-                              >
-                                Apply
-                              </Button>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))
-                  ) : (
-                    <div className="text-center py-8">
-                      <h3 className="text-xl font-medium text-gray-700 mb-2">No Visa Programs Found</h3>
-                      <p className="text-gray-500 mb-6">We couldn't find any visa programs matching your criteria.</p>
-                      <Button 
-                        className="bg-omantel-blue hover:bg-omantel-blue/90 text-white"
-                        onClick={handleBack}
-                      >
-                        Modify Search
-                      </Button>
-                    </div>
-                  )}
+      <div className="max-w-4xl mx-auto pt-16">
+        <Button 
+          variant="ghost" 
+          className="mb-6 text-omantel-blue hover:text-omantel-blue/80 transition-colors p-0 flex items-center gap-2"
+          onClick={handleBack}
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back to Search</span>
+        </Button>
+
+        <Card className="border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
+          <CardHeader className="bg-omantel-blue text-white">
+            <CardTitle className="text-2xl font-semibold">Available Visa Programs</CardTitle>
+            <CardDescription className="text-white/90">
+              {visaSearch && (
+                <>
+                  For travel from <span className="font-semibold">{visaSearch.citizenship.toUpperCase()}</span> to <span className="font-semibold">{visaSearch.destination.toUpperCase()}</span> on <span className="font-semibold">{visaSearch.arrivalDate}</span>
+                </>
+              )}
+            </CardDescription>
+          </CardHeader>
+          
+          <CardContent className="p-6">
+            <div className="space-y-6">
+              {mockVisaPrograms.length > 0 ? (
+                mockVisaPrograms.map((visa) => (
+                  <Card key={visa.id} className="overflow-hidden border border-gray-200 hover:border-omantel-orange transition-all duration-300">
+                    <CardHeader className="bg-gray-50 py-4">
+                      <div className="flex flex-wrap justify-between items-center">
+                        <CardTitle className="text-lg text-omantel-darkBlue">{visa.name}</CardTitle>
+                        <Badge className="bg-omantel-orange hover:bg-omantel-orange/90">{visa.duration}</Badge>
+                      </div>
+                      <CardDescription>{visa.description}</CardDescription>
+                    </CardHeader>
+                    
+                    <CardContent className="py-4">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                          <p className="text-sm text-gray-500">Processing Time</p>
+                          <p className="font-medium">{visa.processing_time}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500">Price</p>
+                          <p className="font-medium text-omantel-blue">
+                            {visa.price} {visa.currency}
+                          </p>
+                        </div>
+                        <div className="md:text-right">
+                          <Button 
+                            className="bg-omantel-orange hover:bg-omantel-orange/90 text-white w-full md:w-auto transition-colors"
+                            onClick={() => handleApply(visa)}
+                          >
+                            Apply
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))
+              ) : (
+                <div className="text-center py-8">
+                  <h3 className="text-xl font-medium text-gray-700 mb-2">No Visa Programs Found</h3>
+                  <p className="text-gray-500 mb-6">We couldn't find any visa programs matching your criteria.</p>
+                  <Button 
+                    className="bg-omantel-blue hover:bg-omantel-blue/90 text-white transition-colors"
+                    onClick={handleBack}
+                  >
+                    Modify Search
+                  </Button>
                 </div>
-              </CardContent>
-              
-              <CardFooter className="bg-gray-50 flex justify-between py-4">
-                <Button 
-                  variant="outline" 
-                  className="border-omantel-blue text-omantel-blue hover:bg-omantel-blue/10"
-                  onClick={handleBack}
-                >
-                  Back to Search
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </div>
-      </main>
-      
-      <Footer />
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
