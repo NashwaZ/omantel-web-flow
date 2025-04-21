@@ -1,43 +1,31 @@
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import CodeBlock from '@/components/CodeBlock';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import AuthenticationStep from '@/components/workflow/AuthenticationStep';
+import ApiRequestStep from '@/components/workflow/ApiRequestStep';
+import ErrorHandlingStep from '@/components/workflow/ErrorHandlingStep';
 
 const Workflow = () => {
-  const authRequestCode = `POST /api/v1/auth/token HTTP/1.1
-Host: api.omantel.om
-Content-Type: application/json
+  const [currentStep, setCurrentStep] = useState(1);
 
-{
-  "client_id": "YOUR_CLIENT_ID",
-  "client_secret": "YOUR_CLIENT_SECRET",
-  "grant_type": "client_credentials"
-}`;
+  const steps = [
+    { component: <AuthenticationStep />, title: "Authentication" },
+    { component: <ApiRequestStep />, title: "API Requests" },
+    { component: <ErrorHandlingStep />, title: "Error Handling" }
+  ];
 
-  const authResponseCode = `HTTP/1.1 200 OK
-Content-Type: application/json
+  const goToNextStep = () => {
+    if (currentStep < steps.length) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
 
-{
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "token_type": "Bearer",
-  "expires_in": 3600
-}`;
-
-  const apiRequestCode = `GET /api/v1/services/status HTTP/1.1
-Host: api.omantel.om
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`;
-
-  const apiResponseCode = `HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "status": "active",
-  "service_id": "sms-001",
-  "features": ["broadcast", "personalization", "scheduling"],
-  "rate_limit": {
-    "requests_per_minute": 60,
-    "remaining": 58
-  }
-}`;
+  const goToPreviousStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -54,94 +42,75 @@ Content-Type: application/json
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold text-omantel-blue mb-8">
-            API Workflow
-          </h1>
-          
-          <div className="space-y-12">
-            {/* Step 1: Authentication */}
-            <section className="bg-white rounded-lg border p-6">
-              <h2 className="text-2xl font-semibold text-omantel-blue mb-4">1. Authentication</h2>
-              <p className="text-gray-600 mb-6">
-                To access the Omantel API endpoints, first authenticate your application using OAuth 2.0.
-              </p>
-              
-              <Tabs defaultValue="request">
-                <TabsList>
-                  <TabsTrigger value="request">Request</TabsTrigger>
-                  <TabsTrigger value="response">Response</TabsTrigger>
-                </TabsList>
-                <TabsContent value="request">
-                  <CodeBlock code={authRequestCode} title="Authentication Request" />
-                </TabsContent>
-                <TabsContent value="response">
-                  <CodeBlock code={authResponseCode} title="Authentication Response" />
-                </TabsContent>
-              </Tabs>
-            </section>
-
-            {/* Step 2: Making API Requests */}
-            <section className="bg-white rounded-lg border p-6">
-              <h2 className="text-2xl font-semibold text-omantel-blue mb-4">2. Making API Requests</h2>
-              <p className="text-gray-600 mb-6">
-                Once authenticated, include the access token in the Authorization header for all API requests.
-              </p>
-              
-              <Tabs defaultValue="request">
-                <TabsList>
-                  <TabsTrigger value="request">Request</TabsTrigger>
-                  <TabsTrigger value="response">Response</TabsTrigger>
-                </TabsList>
-                <TabsContent value="request">
-                  <CodeBlock code={apiRequestCode} title="API Request" />
-                </TabsContent>
-                <TabsContent value="response">
-                  <CodeBlock code={apiResponseCode} title="API Response" />
-                </TabsContent>
-              </Tabs>
-            </section>
-
-            {/* Step 3: Error Handling */}
-            <section className="bg-white rounded-lg border p-6">
-              <h2 className="text-2xl font-semibold text-omantel-blue mb-4">3. Error Handling</h2>
-              <p className="text-gray-600 mb-6">
-                All API responses use standard HTTP status codes. Errors include detailed messages for debugging.
-              </p>
-              
-              <CodeBlock 
-                code={`{
-  "status": "error",
-  "error": {
-    "code": "INVALID_PARAMETER",
-    "message": "The provided parameter is invalid",
-    "details": {
-      "field": "phone_number",
-      "issue": "Format must be international format starting with +"
-    }
-  }
-}`} 
-                title="Error Response" 
-              />
-            </section>
-
-            {/* Step 4: Rate Limiting */}
-            <section className="bg-white rounded-lg border p-6">
-              <h2 className="text-2xl font-semibold text-omantel-blue mb-4">4. Rate Limiting</h2>
-              <p className="text-gray-600 mb-6">
-                API requests are rate-limited to ensure fair usage. Monitor the rate limit headers in responses.
-              </p>
-              
-              <div className="bg-gray-50 rounded-lg p-4">
-                <h3 className="font-medium mb-2">Rate Limit Headers</h3>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li><code>X-RateLimit-Limit</code>: Maximum requests per window</li>
-                  <li><code>X-RateLimit-Remaining</code>: Remaining requests in current window</li>
-                  <li><code>X-RateLimit-Reset</code>: Time when the rate limit resets</li>
-                </ul>
+        {/* Progress indicator */}
+        <div className="max-w-3xl mx-auto mb-8">
+          <div className="flex items-center justify-between">
+            {steps.map((step, index) => (
+              <div 
+                key={index}
+                className={`flex items-center ${
+                  index < steps.length - 1 ? 'flex-1' : ''
+                }`}
+              >
+                <div
+                  className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                    index + 1 <= currentStep
+                      ? 'bg-omantel-blue text-white'
+                      : 'bg-gray-200 text-gray-600'
+                  }`}
+                >
+                  {index + 1}
+                </div>
+                {index < steps.length - 1 && (
+                  <div
+                    className={`flex-1 h-1 mx-2 ${
+                      index + 1 < currentStep ? 'bg-omantel-blue' : 'bg-gray-200'
+                    }`}
+                  />
+                )}
               </div>
-            </section>
+            ))}
           </div>
+          <div className="flex justify-between mt-2">
+            {steps.map((step, index) => (
+              <span
+                key={index}
+                className={`text-sm ${
+                  index + 1 === currentStep
+                    ? 'text-omantel-blue font-medium'
+                    : 'text-gray-500'
+                }`}
+              >
+                {step.title}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Step content */}
+        <div className="mb-8">
+          {steps[currentStep - 1].component}
+        </div>
+
+        {/* Navigation buttons */}
+        <div className="max-w-3xl mx-auto flex justify-between">
+          <Button
+            onClick={goToPreviousStep}
+            disabled={currentStep === 1}
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            Previous
+          </Button>
+          <Button
+            onClick={goToNextStep}
+            disabled={currentStep === steps.length}
+            className="flex items-center gap-2"
+          >
+            Next
+            <ChevronRight className="w-4 h-4" />
+          </Button>
         </div>
       </main>
     </div>
