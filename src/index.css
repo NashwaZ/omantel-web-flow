@@ -87,11 +87,11 @@
 }
 
 .omantel-button {
-  @apply bg-omantel-blue text-white rounded-lg px-6 py-3 hover:bg-opacity-90 transition-all duration-300 font-medium;
+  @apply bg-omantel-orange text-white rounded-lg px-6 py-3 hover:bg-opacity-90 transition-all duration-300 font-medium;
 }
 
 .omantel-button-secondary {
-  @apply bg-omantel-orange text-white rounded-lg px-6 py-3 hover:bg-opacity-90 transition-all duration-300 font-medium;
+  @apply bg-omantel-blue text-white rounded-lg px-6 py-3 hover:bg-opacity-90 transition-all duration-300 font-medium;
 }
 
 .omantel-link {
@@ -100,4 +100,21 @@
 
 .code-block {
   @apply bg-omantel-darkBlue text-white p-4 rounded-lg my-4 overflow-x-auto;
+}
+
+.omantel-input {
+  @apply border-2 border-gray-200 rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-omantel-orange transition-all;
+}
+
+.omantel-select {
+  @apply border-2 border-gray-200 rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-omantel-orange transition-all appearance-none bg-white;
+}
+
+.omantel-label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.omantel-loading {
+  @apply inline-block w-5 h-5 border-2 border-white rounded-full animate-spin;
+  border-top-color: transparent;
 }

@@ -27,7 +27,7 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				omantel: {
 					blue: '#3131F5',
-					orange: '#FF6B00',
+					orange: '#FD7B07',
 					lightBlue: '#EEF4FF',
 					darkBlue: '#1A1F2C',
 					gray: '#8E9196',
@@ -92,11 +92,21 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				pulse: {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.5' }
+				},
+				spin: {
+					from: { transform: 'rotate(0deg)' },
+					to: { transform: 'rotate(360deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				pulse: 'pulse 1.5s ease-in-out infinite',
+				spin: 'spin 1s linear infinite'
 			}
 		}
 	},
