@@ -6,10 +6,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ApplicationProvider } from "./context/ApplicationContext";
 
-import VisaSearch from "./pages/VisaSearch";
+import Index from "./pages/Index";
 import VisaResults from "./pages/VisaResults";
 import VisaApplication from "./pages/VisaApplication";
 import ApplicationComplete from "./pages/ApplicationComplete";
+import NotFound from "./pages/NotFound";
+import Workflow from "./pages/Workflow";
 
 const queryClient = new QueryClient();
 
@@ -21,11 +23,13 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<VisaSearch />} />
+            <Route path="/" element={<Index />} />
             <Route path="/visa-results" element={<VisaResults />} />
             <Route path="/visa-application" element={<VisaApplication />} />
             <Route path="/application-complete" element={<ApplicationComplete />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="/workflow" element={<Workflow />} />
+            <Route path="/404" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
