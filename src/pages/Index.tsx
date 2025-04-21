@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Calendar } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Input } from '@/components/ui/input';
 
 const Index = () => {
   return (
@@ -47,7 +46,7 @@ const Index = () => {
             <div className="space-y-3 text-left">
               <label className="text-lg font-semibold">Travel Date</label>
               <div className="relative">
-                <Input 
+                <input 
                   type="text"
                   placeholder="When are you traveling?"
                   className="w-full h-14 pl-12 text-lg text-gray-500 border border-gray-200 rounded-lg"
@@ -76,3 +75,4 @@ const Index = () => {
 };
 
 export default Index;
+
