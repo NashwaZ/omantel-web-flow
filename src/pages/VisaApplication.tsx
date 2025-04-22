@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -63,7 +64,7 @@ const VisaApplication: React.FC = () => {
           <img 
             src="/lovable-uploads/17ae61e2-701d-40b7-9fef-079b70a0a6b3.png" 
             alt="Omantel Logo" 
-            className="h-6" 
+            className="h-10" // Increased from h-6 to h-10
           />
           <h1 className="text-lg font-bold text-omantel-darkBlue hidden md:block">eVisa Application</h1>
         </div>
@@ -208,7 +209,7 @@ const VisaApplication: React.FC = () => {
                       control={form.control}
                       name="building_name"
                       render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="mb-6"> {/* Added mb-6 to increase spacing */}
                           <FormLabel className="text-omantel-darkBlue flex items-center gap-2">
                             <Building className="h-4 w-4 text-omantel-blue" />
                             Building Name/Number
