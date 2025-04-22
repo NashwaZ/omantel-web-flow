@@ -46,7 +46,7 @@ const Index = () => {
 
       <div className="w-full max-w-3xl space-y-6 text-center relative z-10 mt-12">
         <div className="space-y-3">
-          <h1 className="text-4xl font-bold text-omantel-darkBlue">
+          <h1 className="text-4xl font-bold text-omantel-blue">
             e-Visa Portal
           </h1>
         </div>
