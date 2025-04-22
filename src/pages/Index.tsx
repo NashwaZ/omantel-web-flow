@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
@@ -35,28 +34,28 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6">      
-      <div className="absolute top-0 left-0 w-full p-6">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">      
+      <div className="absolute top-0 left-0 w-full p-4">
         <img 
           src="/lovable-uploads/17ae61e2-701d-40b7-9fef-079b70a0a6b3.png" 
           alt="Omantel Logo" 
-          className="h-10" 
+          className="h-8" 
         />
       </div>
 
-      <div className="w-full max-w-4xl space-y-8 text-center relative z-10 mt-16">
-        <div className="space-y-4">
-          <h1 className="text-6xl font-bold text-omantel-darkBlue">
-            eVisa Application Portal
+      <div className="w-full max-w-3xl space-y-6 text-center relative z-10 mt-12">
+        <div className="space-y-3">
+          <h1 className="text-4xl font-bold text-omantel-darkBlue">
+            e-Visa Portal
           </h1>
-          <p className="text-xl text-omantel-gray max-w-2xl mx-auto">
+          <p className="text-lg text-omantel-gray max-w-xl mx-auto">
             Check your visa eligibility and apply online in minutes with our secure and streamlined process.
           </p>
         </div>
 
-        <Card className="p-10 bg-white shadow-xl rounded-3xl border-0">
-          <CardContent className="p-0 space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Card className="p-6 bg-white shadow-lg rounded-xl border-0">
+          <CardContent className="p-0 space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-3 text-left">
                 <label className="text-lg font-semibold flex items-center gap-2 text-omantel-darkBlue">
                   <Globe2 className="w-6 h-6 text-omantel-orange" />
@@ -138,7 +137,7 @@ const Index = () => {
             <Button 
               onClick={handleSearch} 
               disabled={!destination || !citizenship || !arrivalDate || isLoading}
-              className="w-full py-6 px-8 text-xl font-medium text-white bg-omantel-blue rounded-xl shadow-lg hover:bg-omantel-blue/90 transition-all disabled:opacity-70"
+              className="w-full py-4 px-6 text-lg font-medium text-white bg-omantel-blue rounded-lg shadow-md hover:bg-omantel-blue/90 transition-all disabled:opacity-70"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center gap-2">
@@ -157,4 +156,3 @@ const Index = () => {
 };
 
 export default Index;
-
