@@ -151,35 +151,10 @@ const Index = () => {
             </Button>
           </CardContent>
         </Card>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
-            <div className="bg-omantel-lightBlue/50 rounded-full p-4 mb-4 mx-auto w-fit">
-              <Globe2 className="w-8 h-8 text-omantel-blue" />
-            </div>
-            <h3 className="text-lg font-semibold text-omantel-darkBlue mb-2">190+ Countries</h3>
-            <p className="text-omantel-gray">Support for travelers from around the world</p>
-          </div>
-          
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
-            <div className="bg-omantel-lightBlue/50 rounded-full p-4 mb-4 mx-auto w-fit">
-              <Calendar className="w-8 h-8 text-omantel-orange" />
-            </div>
-            <h3 className="text-lg font-semibold text-omantel-darkBlue mb-2">Fast Processing</h3>
-            <p className="text-omantel-gray">Get your visa in as little as 24 hours</p>
-          </div>
-          
-          <div className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
-            <div className="bg-omantel-lightBlue/50 rounded-full p-4 mb-4 mx-auto w-fit">
-              <Plane className="w-8 h-8 text-omantel-blue" />
-            </div>
-            <h3 className="text-lg font-semibold text-omantel-darkBlue mb-2">Easy Application</h3>
-            <p className="text-omantel-gray">Simple online process with no paperwork</p>
-          </div>
-        </div>
       </div>
     </div>
   );
 };
 
 export default Index;
+
