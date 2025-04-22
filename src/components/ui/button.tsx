@@ -5,12 +5,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /**
- * Matches Figma UI:
+ * Matches provided design images exactly:
  * - Height: md=48px, sm=40px, lg=52px, icon=40px.
- * - Padding: px-6 main (24px), tighter in icon, vertical fine-tuned.
- * - Full 16px corner radius.
- * - Drop shadow for main (when needed).
- * - Font: Medium, uppercase for primary, with tracking.
+ * - Padding: px-5 for sm, px-6 for md, px-8 for lg.
+ * - Border radius: rounded-lg (8px)
+ * - Solid background colors and sharp borders
+ * - Font: Medium weight, no letter spacing
  * - Variant tokens: primary, secondary, tertiary, tertiary-left, outline, ghost, default, destructive.
  * - Focus visible style.
  */
@@ -18,36 +18,36 @@ import { cn } from "@/lib/utils";
 const buttonVariants = cva(
   [
     "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-omantel-orange transition-all",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-omantel-blue transition-all",
     "disabled:pointer-events-none disabled:opacity-50 select-none",
-    "rounded-[16px]",
+    "rounded-lg", // 8px corners as shown in image
   ].join(" "),
   {
     variants: {
       variant: {
         primary:
-          "bg-omantel-orange text-white shadow-sm hover:bg-[#FF9500] active:bg-[#DF6C0A]",
+          "bg-omantel-blue text-white hover:bg-omantel-blue/90 active:bg-omantel-blue/80",
         secondary:
-          "border border-omantel-orange text-omantel-orange bg-white hover:bg-omantel-orange hover:text-white active:bg-[#DF6C0A]",
+          "border-2 border-omantel-blue text-omantel-blue bg-white hover:bg-omantel-blue/10 active:bg-omantel-blue/20",
         tertiary:
           "text-omantel-darkBlue bg-white hover:bg-gray-50 active:bg-gray-100 border border-gray-200",
         "tertiary-left":
-          "text-omantel-darkBlue bg-white hover:bg-gray-50 active:bg-gray-100 rounded-l-[16px] border border-gray-200 border-r-0",
+          "text-omantel-darkBlue bg-white hover:bg-gray-50 active:bg-gray-100 rounded-l-lg border border-gray-200 border-r-0",
         outline:
-          "border border-gray-200 bg-white text-omantel-darkBlue hover:bg-gray-50 hover:border-omantel-orange",
+          "border border-gray-300 bg-white text-omantel-darkBlue hover:bg-gray-50 hover:border-omantel-blue",
         ghost:
           "bg-transparent hover:bg-gray-50 text-omantel-darkBlue",
         default:
-          "bg-omantel-blue text-white hover:bg-omantel-blue/90 active:bg-omantel-blue/80",
+          "bg-omantel-orange text-white hover:bg-omantel-orange/90 active:bg-omantel-orange/80",
         destructive:
           "bg-red-500 text-white hover:bg-red-600 active:bg-red-700"
       },
       size: {
-        sm: "h-10 min-h-[40px] text-base px-5",        // 40px, padding left/right 20px
-        md: "h-12 min-h-[48px] text-base px-6",        // 48px, padding left/right 24px
-        lg: "h-[52px] min-h-[52px] text-lg px-8",      // 52px, padding left/right 32px
-        icon: "h-10 w-10 min-h-[40px] min-w-[40px] p-0",// 40x40, no extra padding
-        default: "h-12 min-h-[48px] text-base px-6"
+        sm: "h-10 min-h-[40px] text-sm px-4",        // 40px, padding left/right 16px
+        md: "h-12 min-h-[48px] text-base px-5",      // 48px, padding left/right 20px
+        lg: "h-[52px] min-h-[52px] text-lg px-6",    // 52px, padding left/right 24px
+        icon: "h-10 w-10 min-h-[40px] min-w-[40px] p-0", // 40x40, no extra padding
+        default: "h-12 min-h-[48px] text-base px-5"  // same as md
       }
     },
     defaultVariants: {
@@ -75,8 +75,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(
           buttonVariants({ variant, size }),
-          "font-medium", // Ensure medium font weight
-          "tracking-wide", // Slight letter spacing
           className
         )}
         ref={ref}
@@ -112,4 +110,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
-
