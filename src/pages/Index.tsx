@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
@@ -48,9 +49,6 @@ const Index = () => {
           <h1 className="text-4xl font-bold text-omantel-darkBlue">
             e-Visa Portal
           </h1>
-          <p className="text-lg text-omantel-gray max-w-xl mx-auto">
-            Check your visa eligibility and apply online in minutes with our secure and streamlined process.
-          </p>
         </div>
 
         <Card className="p-6 bg-white shadow-lg rounded-xl border-0">
