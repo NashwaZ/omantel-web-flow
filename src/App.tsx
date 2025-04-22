@@ -11,7 +11,6 @@ import VisaResults from "./pages/VisaResults";
 import VisaApplication from "./pages/VisaApplication";
 import ApplicationComplete from "./pages/ApplicationComplete";
 import NotFound from "./pages/NotFound";
-import Workflow from "./pages/Workflow";
 
 const queryClient = new QueryClient();
 
@@ -27,7 +26,6 @@ const App = () => (
             <Route path="/visa-results" element={<VisaResults />} />
             <Route path="/visa-application" element={<VisaApplication />} />
             <Route path="/application-complete" element={<ApplicationComplete />} />
-            <Route path="/workflow" element={<Workflow />} />
             <Route path="/404" element={<NotFound />} />
             <Route path="*" element={<Navigate to="/404" replace />} />
           </Routes>
