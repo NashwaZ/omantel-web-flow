@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
  * Button styling:
  * - Corner radius: 16px (rounded-[16px])
  * - Horizontal padding: 16px (px-4)
- * - Sizes: sm=40px, md=48px, lg=52px
+ * - Sizes: sm=40px, md=48px, lg=52px, icon=40px width and height
  * - Primary: bg-omantel-orange text-white 
  * - Secondary: border border-omantel-orange text-omantel-orange bg-white
  * - Tertiary: text-neutral-900 bg-white (no border)
@@ -35,12 +35,24 @@ const buttonVariants = cva(
         tertiary:
           "text-omantel-darkBlue bg-white hover:bg-gray-50 active:bg-gray-100",
         "tertiary-left":
-          "text-omantel-darkBlue bg-white hover:bg-gray-50 active:bg-gray-100 rounded-l-[16px]"
+          "text-omantel-darkBlue bg-white hover:bg-gray-50 active:bg-gray-100 rounded-l-[16px]",
+        // Add the variants used by other components
+        outline: 
+          "border border-gray-200 bg-white text-omantel-darkBlue hover:bg-gray-50 hover:border-omantel-orange",
+        ghost: 
+          "bg-transparent hover:bg-gray-50 text-omantel-darkBlue",
+        default: 
+          "bg-omantel-blue text-white hover:bg-omantel-blue/90 active:bg-omantel-blue/80",
+        destructive: 
+          "bg-red-500 text-white hover:bg-red-600 active:bg-red-700"
       },
       size: {
         sm: "h-10 min-h-[40px] text-base", // 40px
         md: "h-12 min-h-[48px] text-base", // 48px
-        lg: "h-[52px] min-h-[52px] text-lg"  // 52px
+        lg: "h-[52px] min-h-[52px] text-lg",  // 52px
+        // Add sizes used by other components
+        icon: "h-10 w-10 min-h-[40px] min-w-[40px] p-0",
+        default: "h-12 min-h-[48px] text-base" // same as md
       }
     },
     defaultVariants: {
