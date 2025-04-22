@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -94,8 +93,8 @@ const VisaResults: React.FC = () => {
 
   if (localLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-omantel-lightBlue to-white flex items-center justify-center p-6">
-        <div className="text-center max-w-md px-8 py-12 bg-white/70 backdrop-blur-md rounded-3xl shadow-xl">
+      <div className="min-h-screen bg-white flex items-center justify-center p-6">
+        <div className="text-center max-w-md px-8 py-12 bg-white rounded-3xl shadow-lg border border-gray-100">
           <LoadingSpinner size="lg" className="mb-6 text-omantel-blue" />
           <h2 className="text-2xl font-bold text-omantel-darkBlue mb-3">Finding Your Visa Options</h2>
           <p className="text-omantel-gray">We're searching for the perfect visa options for your journey. This will only take a moment.</p>
@@ -105,11 +104,7 @@ const VisaResults: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-omantel-lightBlue/50 to-white p-6 relative">
-      {/* Decorative Elements */}
-      <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-omantel-orange/5 to-omantel-softOrange/5 rounded-full blur-3xl transform rotate-12" />
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-tr from-omantel-blue/5 to-omantel-lightBlue/5 rounded-full blur-3xl transform -rotate-12" />
-      
+    <div className="min-h-screen bg-white p-6">
       <div className="absolute top-0 left-0 w-full p-6">
         <img 
           src="/lovable-uploads/17ae61e2-701d-40b7-9fef-079b70a0a6b3.png" 
@@ -128,7 +123,7 @@ const VisaResults: React.FC = () => {
           <span>Back to Search</span>
         </Button>
 
-        <div className="mb-8 animate-fade-in">
+        <div className="mb-8">
           <h1 className="text-4xl font-bold text-omantel-darkBlue mb-2">Available Visa Options</h1>
           <p className="text-omantel-gray text-lg">
             {visaSearch && (
@@ -139,12 +134,12 @@ const VisaResults: React.FC = () => {
           </p>
         </div>
 
-        <div className="space-y-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="space-y-6">
           {mockVisaPrograms.length > 0 ? (
-            mockVisaPrograms.map((visa, index) => (
+            mockVisaPrograms.map((visa) => (
               <Card 
                 key={visa.id} 
-                className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-md rounded-2xl"
+                className="overflow-hidden border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 bg-white rounded-2xl"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-5 h-full">
                   <div className="lg:col-span-3 p-8">
@@ -177,7 +172,7 @@ const VisaResults: React.FC = () => {
                     </div>
                   </div>
                   
-                  <div className="lg:col-span-2 bg-gradient-to-br from-omantel-lightBlue to-white p-8 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gray-100">
+                  <div className="lg:col-span-2 p-8 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gray-100">
                     <div className="space-y-4">
                       <div className="flex items-center gap-3">
                         <Calendar className="h-5 w-5 text-omantel-blue" />
@@ -205,7 +200,7 @@ const VisaResults: React.FC = () => {
                     </div>
                     
                     <Button 
-                      className="mt-6 bg-gradient-to-r from-omantel-blue to-omantel-orange text-white w-full py-6 rounded-xl shadow-md hover:shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      className="mt-6 bg-omantel-blue hover:bg-omantel-blue/90 text-white w-full py-6 rounded-xl shadow-md transition-all"
                       onClick={() => handleApply(visa)}
                     >
                       <span>Apply Now</span>
@@ -216,7 +211,7 @@ const VisaResults: React.FC = () => {
               </Card>
             ))
           ) : (
-            <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-md rounded-2xl p-8 text-center">
+            <Card className="border border-gray-100 shadow-lg bg-white rounded-2xl p-8 text-center">
               <div className="py-8">
                 <h3 className="text-2xl font-bold text-omantel-darkBlue mb-4">No Visa Programs Found</h3>
                 <p className="text-omantel-gray mb-8 max-w-md mx-auto">We couldn't find any visa programs matching your criteria. Please try a different destination or citizenship.</p>

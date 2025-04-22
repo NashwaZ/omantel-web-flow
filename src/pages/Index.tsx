@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
@@ -35,19 +34,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-omantel-lightBlue to-white flex flex-col items-center justify-center p-6 relative overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-omantel-orange/10 to-omantel-softOrange/10 rounded-full blur-3xl transform rotate-12" />
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-tr from-omantel-blue/10 to-omantel-lightBlue/10 rounded-full blur-3xl transform -rotate-12" />
-      <div className="absolute top-1/2 right-0 h-80 w-80 bg-omantel-softOrange/5 rounded-full blur-3xl transform -translate-y-1/2 translate-x-1/3" />
-      <div className="absolute top-1/2 left-0 h-80 w-80 bg-omantel-blue/5 rounded-full blur-3xl transform -translate-y-1/2 -translate-x-1/3" />
-      
-      {/* Logo and Header */}
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6">
+      {/* Header */}
       <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-center">
         <img 
           src="/lovable-uploads/17ae61e2-701d-40b7-9fef-079b70a0a6b3.png" 
           alt="Omantel Logo" 
-          className="h-10 hover:opacity-80 transition-opacity animate-fade-in cursor-pointer"
+          className="h-10 hover:opacity-80 transition-opacity cursor-pointer"
         />
         <div className="flex gap-4">
           <Button variant="ghost" className="text-omantel-darkBlue hover:text-omantel-blue transition-colors">
